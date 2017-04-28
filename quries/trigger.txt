@@ -1,0 +1,15 @@
+select * from user_triger;
+
+CREATE OR REPLACE TRIGGER ins_update_user
+  AFTER INSERT OR UPDATE ON user_info 
+  FOR EACH ROW
+BEGIN
+  IF INSERTING THEN 
+    INSERT INTO user_triger (ut_id,action,time,old,new) VALUES (usertriger.nextval, 'Insert', SYSTIMESTAMP, '-', :NEW.username);
+  END IF;
+
+  IF UPDATING THEN
+    INSERT INTO user_triger (ut_id,action,time,old,new) VALUES (usertriger.nextval, 'Update', SYSTIMESTAMP, :OLD.username, :NEW.username);
+  END IF;
+END;
+/

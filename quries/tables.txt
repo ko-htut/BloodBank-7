@@ -1,0 +1,78 @@
+select * from USER_TABLES;
+
+
+CREATE TABLE branch (
+   b_id number primary key,
+   b_name varchar2(150),
+   address varchar2(150),
+   area varchar2(50),
+   subarea varchar2(50),
+   phone varchar2(50),
+   email varchar2(50)
+);
+
+desc branch;
+
+CREATE TABLE donor(
+   d_id number primary key,
+   b_id number,
+   d_name varchar2(150),
+   address varchar2(150),
+   area varchar2(50),
+   subarea varchar2(50),
+   blood_group varchar2(10),
+   national_id varchar2(100),
+   phone varchar2(50),
+   email varchar2(50)
+);
+desc donor;
+
+
+CREATE TABLE blood(
+blood_id number primary key,
+d_id number,
+blood_amount varchar2(50),
+blood_group varchar2(50),
+paid_amount number
+);
+desc blood;
+
+CREATE TABLE employee(
+   emp_id number primary key,
+   b_id number,
+   emp_name varchar2(150),
+   emp_salary number,
+   emp_address varchar2(150),
+   emp_area varchar2(50),
+   emp_role varchar2(50),
+   phone varchar2(50),
+   email varchar2(50)
+);
+desc employee;
+
+
+CREATE TABLE blood_request(
+   blood_request_id number primary key,
+   b_id number,
+   name varchar2(150),
+   phone varchar2(50),
+   email varchar2(50),
+   blood_group varchar2(50),
+   hospital varchar2(100),
+   delivery_confirmation varchar2(50),
+   address varchar2(100),
+   area varchar2(50),
+   blood_amount varchar2(50)
+);
+desc blood_request;
+
+
+create table user_triger(
+ ut_id number primary key,
+ action varchar2(100),
+ time varchar2(100),
+ old varchar2(100),
+ new varchar2(100)
+);
+
+COMMIT;
